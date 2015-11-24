@@ -13,6 +13,14 @@
             return this.tab === checkTab;
         }
     });
+    app.controller('ReviewController' , function(){
+        this.review = {};
+        this.addReview = function(product){
+            this.review.createdOn = Date.now();
+            product.reviews.push(this.review);
+            this.review = {};
+        };
+    });
 
     var assetsPath = 'http://dhg7upb7j7jqa.cloudfront.net/shaping_up_with_angular_js/assets/demo/';
     var gems = [{
