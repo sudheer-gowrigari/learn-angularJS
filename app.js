@@ -4,7 +4,7 @@
     app.controller('StoreController', function(){
         this.products = gems;
     });
-    app.controller('TabController' , function(){
+    /*app.controller('TabController' , function(){
         this.tab = 1;
         this.setTab = function(setTab){
             this.tab = setTab || 1;
@@ -12,6 +12,42 @@
         this.isSet = function(checkTab){
             return this.tab === checkTab;
         }
+    });*/
+    app.directive('productTabs', function(){
+        return{
+            restrict:'E',
+            templateUrl:'product-tabs.html',
+            controller: function(){
+                this.tab = 1;
+                this.setTab = function(setTab){
+                    this.tab = setTab || 1;
+                };
+                this.isSet = function(checkTab){
+                    return this.tab === checkTab;
+                }
+            },
+            controllerAs:"tab"
+        };
+    });
+
+    /*app.controller('GalleryController', function(){
+        this.current = 0;
+        this.setCurrent = function(imageNumber){
+            this.current = imageNumber || 0;
+        };
+    });*/
+    app.directive('productGallery', function(){
+        return{
+            restrict:'E',
+            templateUrl:'product-gallery.html',
+            controller: function(){
+                this.current = 0;
+                this.setCurrent = function(imageNumber){
+                    this.current = imageNumber || 0;
+                };
+            },
+            controllerAs:"gallery"
+        };
     });
     app.controller('ReviewController' , function(){
         this.review = {};
@@ -21,9 +57,28 @@
             this.review = {};
         };
     });
+    app.directive('productDescription', function(){
+       return{
+           restrict:'E',
+           templateUrl:'product-description.html'
+       };
+    });
+    app.directive('productSpecs', function(){
+        return{
+            restrict:'A',
+            templateUrl:'product-specs.html'
+        };
+    });
+    app.directive('productReviews', function(){
+        return{
+            restrict:'E',
+            templateUrl:'product-reviews.html'
+        };
+    });
 
     var assetsPath = 'http://dhg7upb7j7jqa.cloudfront.net/shaping_up_with_angular_js/assets/demo/';
-    var gems = [{
+    var gems = [
+        {
         name: 'Azurite',
         description: "Some gems have hidden qualities beyond their luster, beyond their shine... Azurite is one of those gems.",
         shine: 8,
